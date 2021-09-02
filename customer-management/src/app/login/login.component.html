@@ -1,0 +1,31 @@
+<html>
+
+<body>
+    <h1 *ngIf="errorPresent" class="alert alert-danger text-center" role="alert">
+        {{error}}
+    </h1>
+    <div class="container mt-3">
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="text-center">
+
+            <h3>Login Form</h3>
+            <div class="form-group">
+                <label>Username</label>
+
+                <input name="username" formControlName="username" type="text" required/>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+
+                <input formControlName="password" name="password" type="password" required />
+            </div>
+
+            <button type="submit" [disabled]="disable||!loginForm.valid" class="bg-primary text-center">Login</button>
+
+
+        </form>
+    </div>
+
+
+</body>
+
+</html>

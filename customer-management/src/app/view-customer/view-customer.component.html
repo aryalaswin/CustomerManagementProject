@@ -1,0 +1,34 @@
+<div class="container mt-2">
+    <div class="text-center alert alert-success">
+        <h1><b>The {{customerService.customerName}}'s Family Members</b></h1>
+    </div>
+
+    <div *ngIf="family" class="text-center alert alert-danger">
+        <strong> family list is empty, Please add the family members</strong>
+        <br>
+        <button (click)="addFamily()" [disabled]="statusCheck" class="btn mt-1 mb-1 btn-sm btn-info ">Add
+            Family</button></div>
+    <div *ngIf="!family">
+        <table class="table ">
+
+
+            <thead>
+                <tr>
+                    <th>Relationship</th>
+                    <th>Relation Person Name</th>
+                </tr>
+            </thead>
+            <ng-container *ngFor="let customer of customerFamily" class="text-center">
+                <tr>
+                    <td>{{customer.relationship}}</td>
+                    <td>{{customer.relationPersonName}}</td>
+                </tr>
+            </ng-container>
+        </table>
+        <div class="text-center">
+            <button (click)="editFamily() " [disabled]="statusCheck" class="btn mt-1 mb-1 btn-sm btn-info text-center">Edit
+            Family Members</button></div>
+    </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+<!-- <button (click)="showToaster()">Click</button> -->
+<!-- <div *ngIf="this.customerService.mes" class="text-center alert alert-success">
+    <strong>{{this.customerService.message}}</strong>
+</div> -->
+
+
+<div *ngIf="!flag" class="text-center alert alert-danger">
+    <h1><b>{{"CUSTOMER LIST IS EMPTY"}}</b></h1>
+</div>
+
+<div *ngIf="flag">
+    <div class="container-fluid  mt-4">
+        <table class="table-bordered">
+
+
+            <thead class="text-center">
+                <tr>
+                    <th>Index</th>
+                    <th> Name</th>
+                    <th>Address</th>
+                    <th>Mobile Number</th>
+                    <th>Email Address</th>
+                    <th>Date of Birth</th>
+                    <th>Citizenship Number</th>
+                    <th>Gender</th>
+                    <th>Marital Status</th>
+                    <th>Status</th>
+                    <th>Family</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <ng-container *ngFor="let customer of customers; let i=index">
+
+                <tr  class="text-center">
+                    <td>{{i+1}}
+                        <td>{{customer.firstName}} {{customer.middleName}} {{customer.lastName}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{customer.mobileNumber}}</td>
+                        <td>{{customer.emailAddress}}</td>
+                        <td>{{customer.dateOfBirth}}</td>
+                        <td>{{customer.citizenshipNumber}}</td>
+                        <td>{{customer.gender}}</td>
+                        <td>{{customer.maritalStatus}}</td>
+                        <td>{{customer.status}}</td>
+                        <td>
+                            <button (click)="viewFamily(customer.id,customer.firstName)" class="btn btn-sm btn-warning ">View
+                            Family</button>
+                        </td>
+                        <td>
+                            <!-- <a [routerLink]="['/update-customer', customer.id]" class="btn btn-info btn-sm">Edit</a> -->
+
+                            <button (click)="updateCustomer(customer.id)" [disabled]="customer.status=='INACTIVE'" class="btn mr-1 btn-sm btn-info ">Edit</button>
+                            <button (click)="statusDelete(customer.id)"[disabled]="customer.status=='INACTIVE'" class="btn btn-sm mr-1  btn-danger">Delete</button>
+                            <button (click)="statusChange(customer.id)" class="btn btn-sm mr-1 btn-success " *ngIf="customer.status=='ACTIVE'">BLOCK</button>
+                            <button (click)="statusChange(customer.id)" class="btn btn-sm btn-success " *ngIf="customer.status=='INACTIVE'">UNBLOCK</button>
+                        </td>
+                </tr>
+
+            </ng-container>
+
+        </table>
+    </div>
+</div>

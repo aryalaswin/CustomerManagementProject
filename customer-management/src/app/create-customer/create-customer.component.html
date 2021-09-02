@@ -1,0 +1,129 @@
+<h2 class="color-success text-info text-center mt-2">Create Customer</h2>
+<p *ngIf="errorPresent" class="alert alert-danger text-center" role="alert">
+    {{error}}
+</p>
+<div class="container text-center">
+    <form #createform="ngForm" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group  row">
+            <label for="firstname" class="  control-label col-sm-2 col-form-label"> First Name<span
+                    class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="text" formControlName="firstName" class="form-control" id="firstname" placeholder="Enter your first name">
+            </div>
+            <div *ngIf="registerFormControl.firstName.touched && registerFormControl.firstName.invalid" class="required col-sm-3">
+                <div *ngIf="registerFormControl.firstName.errors?.required"> First Name is required</div>
+                <div *ngIf="registerFormControl.firstName.errors?.pattern">Firstname contains only alphabets of 3 to 15 letters
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="middlename" class="col-sm-2 col-form-label">Middle Name</label>
+            <div class="col-sm-7">
+                <input type="text" formControlName="middleName" class="form-control" id="middlename" placeholder="Enter your middle name">
+            </div>
+            <div *ngIf="registerFormControl.middleName.touched && registerFormControl.middleName.invalid" class="required col-sm-3">
+
+                <div *ngIf="registerFormControl.middleName.errors?.pattern">Middlename must be of 3 to 15 alphabets
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastname" class="col-sm-2 col-form-label">Last Name<span class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="text" formControlName="lastName" class="form-control" id="lastname" placeholder="Enter your last name">
+            </div>
+            <div *ngIf="registerFormControl.lastName.touched && registerFormControl.lastName.invalid" class="required col-sm-3">
+
+                <div class="required" *ngIf="registerFormControl.lastName.errors?.required">Last Name is required</div>
+
+                <div class="required col-sm" *ngIf="registerFormControl.lastName.errors?.pattern">Lastname contains only alphabets of 3 to 15 letters</div>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="birth" class="col-sm-2 col-form-label">Date of Birth<span class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="date" [max]="date" class="form-control" formControlName="dateOfBirth" id="birth" placeholder="2055-12-14">
+            </div>
+            <div *ngIf="registerFormControl.dateOfBirth.touched && registerFormControl.dateOfBirth.invalid" class="required col-sm-3">
+                <div *ngIf="
+          registerFormControl.dateOfBirth.errors?.required">Date of birth is required</div>
+          <div *ngIf="
+          registerFormControl.dateOfBirth.errors?.pattern">Enter Valid Date of birth</div>
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="cnum" class="col-sm-2 col-form-label">Citizenship Number<span
+                    class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="text" formControlName="citizenshipNumber" class="form-control" id="cnum" placeholder="Enter your citizenship number">
+
+            </div>
+            <div *ngIf="registerFormControl.citizenshipNumber.touched && registerFormControl.citizenshipNumber.invalid" class="required col-sm-3">
+                <div class="required" *ngIf=" registerFormControl.citizenshipNumber.errors?.required">Citizenship number is required </div>
+                <div class="required" *ngIf="registerFormControl.citizenshipNumber.errors?.pattern">
+                    Enter Valid Citizenship number </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="emailid" class="col-sm-2 col-form-label">Email Id</label>
+            <div class="col-sm-7">
+                <input type="text" formControlName="emailAddress" class="form-control" id="emailid" placeholder="Enter your email id">
+            </div>
+            <div *ngIf="registerFormControl.emailAddress.touched && registerFormControl.emailAddress.invalid" class="required col-sm-3">
+
+                <div *ngIf="registerFormControl.emailAddress.errors?.pattern">Enter Valid Email Address</div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="address" class="col-sm-2 col-form-label">Address<span class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="address" formControlName="address" placeholder="Enter your address">
+            </div>
+            <div *ngIf="registerFormControl.address.touched && registerFormControl.address.invalid" class="required col-sm-3">
+                <div *ngIf=" registerFormControl.address.errors?.required">Address is required</div>
+                <div *ngIf=" registerFormControl.address.errors?.pattern">Enter Valid Address</div>
+
+            </div>
+        </div>
+
+        <div class=" row">
+            <label for="phone" class="col-sm-2 col-form-label">Mobile number<span class="ml-2 required">*</span></label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control" id="phone" formControlName="mobileNumber" placeholder="Enter your mobile number" required>
+
+            </div>
+            <div *ngIf="registerFormControl.mobileNumber.touched && registerFormControl.mobileNumber.invalid" class="required col-sm-3">
+                <div class="required" *ngIf=" registerFormControl.mobileNumber.errors?.required">Mobile number is required
+                </div>
+                <div class="required" *ngIf="registerFormControl.mobileNumber.errors?.pattern">
+                    Enter Valid Mobile number </div>
+            </div>
+        </div><br>
+        <div class="form-group row">
+            <label for="gender" class="col-sm-2 col-form-label">Gender<span class="ml-2 required">*</span></label>
+            <div class="col-sm-3">
+                <input type="radio" value="Male" name="gender" formControlName="gender"> Male
+                <input type="radio" value="Female" name="gender" formControlName="gender"> Female
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="status" class="col-sm-2 col-form-label">Maritial Status<span
+                    class="ml-2 required">*</span></label>
+            <div class="col-sm-3">
+                <input type="radio" value="Married" name="maritalStatus" formControlName="maritalStatus"> Married
+                <input type="radio" value="Unmarried" name="maritalStatus" formControlName="maritalStatus"> UnMarried
+            </div>
+        </div>
+
+        <div>
+            <button class="btn btn-success" [disabled]="!createform.valid" type="submit mr-5">Submit</button>
+            <button class="btn btn-success ml-2" type="reset">Reset</button>
+        </div>
+
+
+    </form>
+</div>

@@ -1,0 +1,62 @@
+<div class="container mt-2">
+    <div class="text-center alert alert-success">
+        <h1><b>Edit {{customerService.customerName}}'s Family Members</b></h1>
+    </div>
+    <h1 *ngIf="errorPresent" class="alert alert-danger text-center" role="alert">
+        {{error}}
+    </h1>
+    <form [formGroup]="editFamily" (ngSubmit)="saveCustomerFamily()">
+        <ng-container>
+            <div class="form-group  row">
+                <label for="fatherName" class="  control-label col-sm-2 col-form-label"> Father Name<span
+                    class="ml-2 required">*</span></label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="fatherName" class="form-control" id="fatherName" placeholder="Enter your father name">
+                </div>
+                <div *ngIf="editForm.fatherName.touched && editForm.fatherName.invalid" class="required col-sm-3">
+                    <div *ngIf="editForm.fatherName.errors?.required">Enter Father Name </div>
+                    <div *ngIf="editForm.fatherName.errors?.pattern">Father name is not valid
+                    </div>
+                </div>
+            </div>
+            <div class="form-group  row">
+                <label for="motherName" class="  control-label col-sm-2 col-form-label"> Mother Name<span
+                    class="ml-2 required">*</span></label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="motherName" class="form-control" id="motherName" placeholder="Enter your first name">
+                </div>
+                <div *ngIf="editForm.motherName.touched && editForm.motherName.invalid" class="required col-sm-3">
+                    <div *ngIf="editForm.motherName.errors?.required">Enter Mother Name </div>
+                    <div *ngIf="editForm.motherName.errors?.pattern">Mother name is invalid
+                    </div>
+                </div>
+            </div>
+            <div class="form-group  row">
+                <label for="grandfatherName" class="  control-label col-sm-2 col-form-label"> Grandfather Name<span
+                    class="ml-2 required">*</span></label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="grandfatherName" class="form-control" id="grandfatherName" placeholder="Enter your Grandfather name">
+                </div>
+                <div *ngIf="editForm.grandfatherName.touched && editForm.grandfatherName.invalid" class="required col-sm-3">
+                    <div *ngIf="editForm.grandfatherName.errors?.required">Enter Grandfather Name </div>
+                    <div *ngIf="editForm.grandfatherName.errors?.pattern">Grandfather name is invalid
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div *ngIf="married" class="form-group  row">
+                <label for="spouseName" class="  control-label col-sm-2 col-form-label"> Spouse Name<span
+                class="ml-2 required">*</span></label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="spouseName" class="form-control" id="spouseName" placeholder="Enter your Spouse name">
+                </div>
+                <div *ngIf="editForm.spouseName.touched && editForm.grandfatherName.invalid" class="required col-sm-3">
+                    <div *ngIf="editForm.spouseName.errors?.required">Enter Spouse Name </div>
+                    <div *ngIf="editForm.spouseName.errors?.pattern">Spouse name contains only alphabets of 3 to 15 letters
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success"[disabled]="!editFamily.valid" type="submit mr-5">Submit</button></ng-container>
+    </form>
